@@ -1,0 +1,88 @@
+.klub-admin-page .app-main,
+.klub-admin-page .app-content,
+.klub-admin-page .card {
+  min-width: 0;
+}
+
+.klub-admin-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.klub-admin-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.klub-admin-filter-group {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  background: var(--color-bg);
+  padding: 3px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+}
+
+.klub-admin-search {
+  position: relative;
+  width: min(100%, 240px);
+}
+
+.klub-admin-table-wrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.klub-admin-table {
+  width: 100%;
+  min-width: 980px;
+}
+
+.klub-admin-table td:last-child,
+.klub-admin-table th:last-child {
+  width: 1%;
+  white-space: nowrap;
+}
+
+.klub-admin-desc {
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.klub-admin-action-group {
+  display: flex;
+  gap: 5px;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+@media (max-width: 900px) {
+  .klub-admin-table {
+    min-width: 900px;
+  }
+}
+
+@media (max-width: 768px) {
+  .klub-admin-toolbar-actions {
+    width: 100%;
+  }
+
+  .klub-admin-search {
+    width: 100%;
+  }
+
+  .klub-admin-desc {
+    max-width: 180px;
+  }
+}

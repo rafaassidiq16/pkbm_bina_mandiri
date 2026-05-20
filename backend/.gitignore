@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+
+# Uploaded files (ignore actual files, keep folder structure via .gitkeep)
+uploads/spmb/*
+uploads/tugas/*
+uploads/materi/*
+uploads/bukti_bayar/*
+!uploads/**/.gitkeep
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
