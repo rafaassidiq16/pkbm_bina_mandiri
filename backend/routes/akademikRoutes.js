@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import AkademikController from '../controllers/AkademikController.js';
 import { verifyToken, checkRole, ROLES } from '../middlewares/authMiddleware.js';
+import upload from '../config/multer.js';
 
 const router = Router();
 
@@ -20,5 +21,15 @@ router.delete('/rombel-mapel/:id', checkRole(ROLES.SUPER_ADMIN), AkademikControl
 
 router.get('/options/rombel', checkRole(ROLES.ADMIN, ROLES.SUPER_ADMIN), AkademikController.getRombelOptions);
 router.get('/options/tutor', checkRole(ROLES.ADMIN, ROLES.SUPER_ADMIN), AkademikController.getTutorOptions);
+
+// ── RPS (Rencana Pembelajaran Semester) ──────────────────
+router.get('/rps', AkademikController.getRps);
+router.post(
+  '/rps',
+  checkRole(ROLES.TUTOR, ROLES.ADMIN, ROLES.SUPER_ADMIN),
+  (req, res, next) => { req.uploadFolder = 'rps'; next(); },
+  upload.single('rps'),
+  AkademikController.uploadRps
+);
 
 export default router;

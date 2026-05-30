@@ -112,6 +112,7 @@ const AkademikModel = {
         rm.tutor_id,
         rm.is_visible,
         rm.urutan,
+        rm.rps_file_path,
         rm.created_at,
         r.nama_rombel,
         r.jenjang AS jenjang_rombel,
@@ -211,6 +212,33 @@ const AkademikModel = {
 
   deleteRombelMapel: async (id) => {
     const [result] = await pool.execute(`DELETE FROM rombel_mapel WHERE id = ?`, [id]);
+    return result.affectedRows;
+  },
+
+  // -----------------------------------------------------------
+  // RPS (Rencana Pembelajaran Semester)
+  // -----------------------------------------------------------
+  findRombelMapelByRombelAndMapel: async (rombel_id, mapel_id) => {
+    const [rows] = await pool.execute(
+      `
+        SELECT rm.id, rm.rombel_id, rm.mapel_id, rm.tutor_id, rm.rps_file_path,
+               mp.nama AS nama_mapel, u.nama_lengkap AS nama_tutor
+        FROM rombel_mapel rm
+        JOIN mata_pelajaran mp ON mp.id = rm.mapel_id
+        LEFT JOIN users u ON u.id = rm.tutor_id
+        WHERE rm.rombel_id = ? AND rm.mapel_id = ?
+        LIMIT 1
+      `,
+      [rombel_id, mapel_id]
+    );
+    return rows[0] || null;
+  },
+
+  updateRpsFile: async (id, rps_file_path) => {
+    const [result] = await pool.execute(
+      `UPDATE rombel_mapel SET rps_file_path = ? WHERE id = ?`,
+      [rps_file_path, id]
+    );
     return result.affectedRows;
   },
 

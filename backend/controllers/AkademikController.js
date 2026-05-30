@@ -1,5 +1,6 @@
 import AkademikModel from '../models/AkademikModel.js';
 import SiswaModel from '../models/SiswaModel.js';
+import fs from 'fs';
 
 const VALID_JENJANG = ['paket_a', 'paket_b', 'paket_c', 'semua'];
 
@@ -258,6 +259,92 @@ const AkademikController = {
     } catch (error) {
       console.error('[AkademikController.getRombelOptions] Error:', error);
       return res.status(500).json({ success: false, message: 'Gagal mengambil daftar rombel.' });
+    }
+  },
+
+  // -----------------------------------------------------------
+  // RPS (Rencana Pembelajaran Semester)
+  // -----------------------------------------------------------
+  getRps: async (req, res) => {
+    try {
+      const { rombel_id, mapel_id } = req.query;
+      if (!rombel_id || !mapel_id) {
+        return res.status(400).json({ success: false, message: 'rombel_id dan mapel_id wajib diisi.' });
+      }
+
+      const mapping = await AkademikModel.findRombelMapelByRombelAndMapel(
+        parseInt(rombel_id),
+        parseInt(mapel_id)
+      );
+
+      if (!mapping) {
+        return res.status(404).json({ success: false, message: 'Mapping rombel dan mapel tidak ditemukan.' });
+      }
+
+      return res.status(200).json({
+        success: true,
+        data: {
+          id: mapping.id,
+          rombel_id: mapping.rombel_id,
+          mapel_id: mapping.mapel_id,
+          tutor_id: mapping.tutor_id,
+          nama_mapel: mapping.nama_mapel,
+          nama_tutor: mapping.nama_tutor,
+          rps_file_path: mapping.rps_file_path || null
+        }
+      });
+    } catch (error) {
+      console.error('[AkademikController.getRps] Error:', error);
+      return res.status(500).json({ success: false, message: 'Gagal memuat RPS.' });
+    }
+  },
+
+  uploadRps: async (req, res) => {
+    try {
+      const { rombel_id, mapel_id } = req.body;
+      if (!rombel_id || !mapel_id) {
+        if (req.file) fs.unlink(req.file.path, () => { });
+        return res.status(400).json({ success: false, message: 'rombel_id dan mapel_id wajib diisi.' });
+      }
+
+      if (!req.file) {
+        return res.status(400).json({ success: false, message: 'File RPS wajib diupload.' });
+      }
+
+      // Validasi file type (harus PDF)
+      if (req.file.mimetype !== 'application/pdf') {
+        fs.unlink(req.file.path, () => { });
+        return res.status(400).json({ success: false, message: 'File RPS harus berformat PDF.' });
+      }
+
+      const mapping = await AkademikModel.findRombelMapelByRombelAndMapel(
+        parseInt(rombel_id),
+        parseInt(mapel_id)
+      );
+
+      if (!mapping) {
+        fs.unlink(req.file.path, () => { });
+        return res.status(404).json({ success: false, message: 'Mapping rombel dan mapel tidak ditemukan.' });
+      }
+
+      // Hapus file RPS lama jika ada
+      if (mapping.rps_file_path) {
+        fs.unlink(mapping.rps_file_path, () => { });
+      }
+
+      await AkademikModel.updateRpsFile(mapping.id, req.file.path);
+
+      return res.status(200).json({
+        success: true,
+        message: 'RPS berhasil diunggah.',
+        data: {
+          rps_file_path: req.file.path
+        }
+      });
+    } catch (error) {
+      console.error('[AkademikController.uploadRps] Error:', error);
+      if (req.file) fs.unlink(req.file.path, () => { });
+      return res.status(500).json({ success: false, message: 'Gagal mengunggah RPS.' });
     }
   },
 };
