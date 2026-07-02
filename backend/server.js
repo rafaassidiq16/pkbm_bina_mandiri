@@ -1,33 +1,27 @@
-// ============================================================
-// server.js
-// Entry point aplikasi backend PKBM Bina Mandiri.
-// Menggabungkan semua konfigurasi, middleware, dan routes.
-// ============================================================
-
 import express from 'express';
-import cors    from 'cors';
-import dotenv  from 'dotenv';
+import cors from 'cors';
+import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { testConnection } from './config/db.js';
 
 // ── Import semua routes ──────────────────────────────────────
-import authRoutes    from './routes/authRoutes.js';
-import siswaRoutes   from './routes/siswaRoutes.js';
-import userRoutes    from './routes/userRoutes.js';
-import spmbRoutes    from './routes/spmbRoutes.js';
+import authRoutes from './routes/authRoutes.js';
+import siswaRoutes from './routes/siswaRoutes.js';
+import userRoutes from './routes/userRoutes.js';
+import spmbRoutes from './routes/spmbRoutes.js';
 import tagihanRoutes from './routes/tagihanRoutes.js';
 import absensiRoutes from './routes/absensiRoutes.js';
-import materiRoutes  from './routes/materiRoutes.js';
-import ujianRoutes   from './routes/ujianRoutes.js';
-import klubRoutes    from './routes/klubRoutes.js';
+import materiRoutes from './routes/materiRoutes.js';
+import ujianRoutes from './routes/ujianRoutes.js';
+import klubRoutes from './routes/klubRoutes.js';
 import pertemuanRoutes from './routes/pertemuanRoutes.js';
 import akademikRoutes from './routes/akademikRoutes.js';
 import periodeUjianRoutes from './routes/periodeUjianRoutes.js';
 
 dotenv.config();
 
-const app  = express();
+const app = express();
 const PORT = process.env.PORT || 3000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -45,45 +39,50 @@ const allowedOrigins = (
 // MIDDLEWARE GLOBAL
 // ============================================================
 app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    }
-    return callback(new Error(`Origin ${origin} tidak diizinkan oleh CORS.`));
-  },
-  credentials: true,
+  origin: allowedOrigins, // Daftar domain yang diizinkan
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Metode HTTP yang diizinkan
+  credentials: true, // Mengizinkan pengiriman cookie atau header otentikasi
 }));
+
+// Logging untuk debugging CORS
+app.use((req, res, next) => {
+  console.log(`[CORS Debug] Origin: ${req.headers.origin}`);
+  next();
+});
+
+// Tangani preflight request OPTIONS
+app.options('*', cors());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Sajikan folder uploads sebagai file statis
-// Akses: http://localhost:3000/uploads/spmb/namafile.pdf
 app.use('/uploads', express.static(uploadsDir));
 
 // ============================================================
 // ROUTES API  — semua diawali /api
 // ============================================================
-app.use('/api/auth',    authRoutes);     // Login & cek token
-app.use('/api/users',   userRoutes);     // Manajemen akun (Super Admin)
-app.use('/api/siswa',   siswaRoutes);    // Data Warga Belajar
-app.use('/api/spmb',    spmbRoutes);     // Pendaftaran & verifikasi SPMB
-app.use('/api/tagihan', tagihanRoutes);  // Keuangan: tagihan & pembayaran
-app.use('/api/absensi', absensiRoutes);  // Absensi dual-mode
-app.use('/api/lms',     materiRoutes);   // KBM: materi, tugas, jadwal
-app.use('/api/ujian',   ujianRoutes);    // Bank soal & ujian online
-app.use('/api/klub',    klubRoutes);     // Klub minat bakat
-app.use('/api/pertemuan', pertemuanRoutes); // Modul Pertemuan Terpadu
-app.use('/api/akademik', akademikRoutes); // Master mapel & mapel per rombel
-app.use('/api/periode-ujian', periodeUjianRoutes); // Periode ujian UTS/UAS
+app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/siswa', siswaRoutes);
+app.use('/api/spmb', spmbRoutes);
+app.use('/api/tagihan', tagihanRoutes);
+app.use('/api/absensi', absensiRoutes);
+app.use('/api/lms', materiRoutes);
+app.use('/api/ujian', ujianRoutes);
+app.use('/api/klub', klubRoutes);
+app.use('/api/pertemuan', pertemuanRoutes);
+app.use('/api/akademik', akademikRoutes);
+app.use('/api/periode-ujian', periodeUjianRoutes);
 
 // ============================================================
 // HEALTH CHECK
 // ============================================================
 app.get('/api/health', (req, res) => {
   res.json({
-    success:     true,
-    message:     'Server PKBM Bina Mandiri berjalan normal.',
-    timestamp:   new Date().toISOString(),
+    success: true,
+    message: 'Server PKBM Bina Mandiri berjalan normal.',
+    timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV || 'development',
   });
 });
