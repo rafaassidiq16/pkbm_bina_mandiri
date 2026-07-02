@@ -1,20 +1,51 @@
-// ============================================================
-// src/hooks/useAuth.js — Custom Hook untuk Autentikasi
-// ============================================================
-// Mengambil data user yang sedang login dari AuthContext.
-// Gunakan hook ini di komponen mana pun yang butuh info user/role.
-//
-// Contoh penggunaan:
-//   const { user, role, logout } = useAuth();
-// ============================================================
+// =======================================
+// src/hooks/useAuth.js
+// Login, Logout, Auth Handler
+// =======================================
 
-import { useContext } from 'react';
-import { AuthContext } from '../context/AuthContext.jsx';
+import { useState } from "react";
+import api from "../services/api";
 
-export function useAuth() {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth harus digunakan di dalam <AuthProvider>');
-  }
-  return context;
+export default function useAuth() {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const login = async (email, password) => {
+    try {
+      setLoading(true);
+      setError("");
+
+      const res = await api.post("/auth/login", {
+        email,
+        password,
+      });
+
+      if (res.data.success) {
+        localStorage.setItem("token", res.data.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data.data.user));
+      } else {
+        setError("Email atau password salah.");
+      }
+
+      return res.data;
+    } catch (err) {
+      console.error(err);
+      setError("Tidak dapat terhubung ke server.");
+      return { success: false, message: "Gagal login" };
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+  };
+
+  return {
+    login,
+    logout,
+    loading,
+    error,
+  };
 }

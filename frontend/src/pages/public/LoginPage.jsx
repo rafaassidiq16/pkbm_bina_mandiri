@@ -1,14 +1,10 @@
 // ============================================================
 // src/pages/public/LoginPage.jsx — Halaman Login
 // ============================================================
-// Halaman login utama yang bisa diakses semua role.
-// Setelah berhasil login, user diarahkan ke dashboard
-// yang sesuai dengan role-nya melalui DashboardRouter.
-// ============================================================
 
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { AuthAPI } from '../../services/api.js';
+import { AuthAPI } from '../../services/api';   // FIXED IMPORT
 import gedungPkbm from '../../assets/gedung-pkbm.jpg';
 import logoPkbm from '../../assets/logo-pkbm.png';
 import './LoginPage.css';
@@ -16,176 +12,123 @@ import './LoginPage.css';
 function LoginPage() {
   const navigate = useNavigate();
 
-  // ── State Formulir ──────────────────────────────────────
+  // State input
   const [email, setEmail]       = useState('');
   const [password, setPassword] = useState('');
-  const [showPass, setShowPass] = useState(false);  // Toggle tampilkan password
+  const [showPass, setShowPass] = useState(false);
 
-  // ── State UI ────────────────────────────────────────────
+  // State UI
   const [loading, setLoading] = useState(false);
-  const [error, setError]     = useState('');       // Pesan error dari server
+  const [error, setError]     = useState('');
 
-  // ── Handler Submit Form ─────────────────────────────────
   const handleLogin = async (e) => {
-    e.preventDefault(); // Cegah reload halaman default browser
+    e.preventDefault();
+    setError("");
 
-    // Reset pesan error sebelumnya
-    setError('');
-
-    // Validasi sederhana di sisi client sebelum hit API
     if (!email.trim() || !password.trim()) {
-      setError('Email dan password wajib diisi.');
+      setError("Email dan password wajib diisi.");
       return;
     }
 
-    setLoading(true); // Tampilkan animasi loading di tombol
+    setLoading(true);
 
     try {
-      // Panggil endpoint POST /api/auth/login
       const response = await AuthAPI.login(email, password);
+
+      if (!response.data.success) {
+        setError(response.data.message || "Email atau password salah.");
+        return;
+      }
+
       const { token, user } = response.data.data;
 
-      // Simpan token dan data user ke localStorage
-      // Token dipakai oleh api.js (interceptor) di setiap request berikutnya
-      localStorage.setItem('pkbm_token', token);
-      localStorage.setItem('pkbm_user', JSON.stringify(user));
+      // Simpan token dan user
+      localStorage.setItem("pkbm_token", token);
+      localStorage.setItem("pkbm_user", JSON.stringify(user));
 
-      // Redirect ke /dashboard → DashboardRouter akan menentukan
-      // ke sub-dashboard mana berdasarkan role user
-      navigate('/dashboard');
+      navigate("/dashboard");
 
     } catch (err) {
-      // Ambil pesan error dari response backend, atau tampilkan pesan default
-      const pesanError =
+      const msg =
         err.response?.data?.message ||
-        'Login gagal. Periksa koneksi internet Anda.';
-      setError(pesanError);
+        "Login gagal. Periksa koneksi internet Anda.";
+      setError(msg);
     } finally {
-      // Selalu matikan loading meski request sukses atau gagal
       setLoading(false);
     }
   };
 
-  // ── Render ───────────────────────────────────────────────
   return (
     <div className="login-page">
-
-      {/* Sisi kiri: foto gedung */}
       <div className="login-branding">
-        <div className="login-branding-blur" style={{ backgroundImage: `url(${gedungPkbm})` }}></div>
+        <div className="login-branding-blur" style={{ backgroundImage: `url(${gedungPkbm})` }} />
         <div className="login-branding-container">
-          <img src={logoPkbm} alt="Logo PKBM Bina Mandiri" className="login-branding-img" />
-          <div className="login-branding-info">
-            <h2 className="login-branding-tagline">"Pendidikan Setara, Masa Depan Gemilang"</h2>
-            <p className="login-branding-subtext">
-              Penyelenggara Resmi Program Pendidikan Kesetaraan Paket A, Paket B, dan Paket C di Bawah Naungan Dinas Pendidikan Kabupaten Sumedang.
-            </p>
-          </div>
+          <img src={logoPkbm} className="login-branding-img" alt="Logo PKBM" />
+          <h2>"Pendidikan Setara, Masa Depan Gemilang"</h2>
         </div>
       </div>
 
-      {/* Sisi kanan: form login */}
       <div className="login-form-section">
         <div className="login-card">
 
-          <div className="login-card-header">
-            <h2>Selamat Datang!</h2>
-            <p>Silakan masuk dengan akun Anda untuk melanjutkan.</p>
-          </div>
+          <h2>Selamat Datang!</h2>
+          <p>Silakan masuk dengan akun Anda.</p>
 
-          {/* Tampilkan pesan error jika ada */}
           {error && (
-            <div className="alert alert-danger" role="alert">
-              <i className="bi bi-exclamation-triangle-fill"></i>
-              <span>{error}</span>
+            <div className="alert alert-danger">
+              <i className="bi bi-exclamation-triangle-fill" />
+              {error}
             </div>
           )}
 
-          {/* Form Login */}
-          <form onSubmit={handleLogin} noValidate>
+          <form onSubmit={handleLogin}>
 
-            {/* Field Email */}
             <div className="form-group">
-              <label htmlFor="email" className="form-label">
-                Alamat Email <span className="required">*</span>
-              </label>
-              <div className="input-with-icon">
-                <i className="bi bi-envelope-fill input-icon"></i>
-                <input
-                  id="email"
-                  type="email"
-                  className="form-input with-icon"
-                  placeholder="contoh@email.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  disabled={loading}
-                  autoComplete="email"
-                  autoFocus
-                />
-              </div>
+              <label>Email</label>
+              <input
+                type="email"
+                className="form-input"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={loading}
+                required
+              />
             </div>
 
-            {/* Field Password */}
             <div className="form-group">
-              <label htmlFor="password" className="form-label">
-                Password <span className="required">*</span>
-              </label>
+              <label>Password</label>
               <div className="input-with-icon">
-                <i className="bi bi-lock-fill input-icon"></i>
                 <input
-                  id="password"
-                  type={showPass ? 'text' : 'password'}
-                  className="form-input with-icon with-icon-right"
-                  placeholder="Masukkan password Anda"
+                  type={showPass ? "text" : "password"}
+                  className="form-input with-icon-right"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   disabled={loading}
-                  autoComplete="current-password"
+                  required
                 />
-                {/* Tombol toggle tampilkan/sembunyikan password */}
                 <button
                   type="button"
                   className="input-icon-right"
                   onClick={() => setShowPass(!showPass)}
-                  aria-label={showPass ? 'Sembunyikan password' : 'Tampilkan password'}
                 >
-                  <i className={`bi ${showPass ? 'bi-eye-slash' : 'bi-eye'}`}></i>
+                  <i className={`bi ${showPass ? 'bi-eye-slash' : 'bi-eye'}`} />
                 </button>
               </div>
             </div>
 
-            {/* Tombol Submit */}
-            <button
-              type="submit"
-              className="btn btn-primary btn-block"
-              disabled={loading}
-            >
-              {loading ? (
-                <>
-                  <span className="spinner-sm"></span>
-                  <span>Memproses...</span>
-                </>
-              ) : (
-                <>
-                  <i className="bi bi-box-arrow-in-right"></i>
-                  <span>Masuk</span>
-                </>
-              )}
+            <button type="submit" className="btn btn-primary" disabled={loading}>
+              {loading ? "Memproses..." : "Masuk"}
             </button>
 
           </form>
 
-          {/* Link ke SPMB */}
-          <div className="login-card-footer">
-            <p>
-              Belum punya akun?{' '}
-              <Link to="/daftar">Daftar sebagai siswa baru</Link>
-            </p>
-          </div>
+          <p className="login-card-footer">
+            Belum punya akun?{" "}
+            <Link to="/daftar">Daftar sebagai siswa baru</Link>
+          </p>
 
         </div>
       </div>
-
     </div>
   );
 }
