@@ -82,7 +82,7 @@ export default function HomePage() {
   const navScrolled = scrollY > 80;
 
   return (
-    <div style={{ fontFamily: "'Source Sans Pro', -apple-system, sans-serif", background: "#FAFFF9", color: "#1a1a1a", overflowX: "hidden" }}>
+    <div style={{ fontFamily: "'Source Sans Pro', -apple-system, sans-serif", background: "#F8FCFF", color: "#1a1a1a", overflowX: "hidden" }}>
       <style>{`
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
@@ -123,7 +123,7 @@ export default function HomePage() {
           transition: background 0.2s, transform 0.15s;
           cursor: pointer;
         }
-        .btn-solid:hover { background: #153d2b; transform: translateY(-2px); }
+        .btn-solid:hover { background: #0e6fa8; transform: translateY(-2px); }
 
         .btn-ghost {
           display: inline-block; text-decoration: none;
@@ -138,11 +138,11 @@ export default function HomePage() {
 
         .prog-card {
           border-radius: 12px; overflow: hidden;
-          box-shadow: 0 2px 16px rgba(27,77,53,0.10);
+          box-shadow: 0 2px 16px rgba(26,143,209,0.10);
           transition: transform 0.25s, box-shadow 0.25s;
           background: #fff;
         }
-        .prog-card:hover { transform: translateY(-8px); box-shadow: 0 16px 40px rgba(27,77,53,0.18); }
+        .prog-card:hover { transform: translateY(-8px); box-shadow: 0 16px 40px rgba(26,143,209,0.18); }
 
         .keung-item {
           padding: 28px 24px; border-left: 3px solid ${GL};
@@ -248,7 +248,7 @@ export default function HomePage() {
               transform: `scale(1.05) translateY(${scrollY * 0.03}px)`, transition: "transform 0.1s linear" }} />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, transparent 60%, #FAFFF9 100%)" }} />
           {/* Watermark label */}
-          <div style={{ position: "absolute", bottom: 32, left: 28, background: "rgba(27,77,53,0.85)", backdropFilter: "blur(8px)", color: "#fff", padding: "10px 18px", borderRadius: 6, fontSize: "0.8rem", fontWeight: 600 }}>
+          <div style={{ position: "absolute", bottom: 32, left: 28, background: "rgba(26,143,209,0.85)", backdropFilter: "blur(8px)", color: "#fff", padding: "10px 18px", borderRadius: 6, fontSize: "0.8rem", fontWeight: 600 }}>
             📍 Kab. Sumedang, Jawa Barat
           </div>
         </div>
@@ -261,11 +261,11 @@ export default function HomePage() {
           position: "relative",
         }}>
           {/* Aksen garis emas */}
-          <div style={{ width: 48, height: 4, background: "#1a8fd1"OLD, borderRadius: 2, marginBottom: 28 }} className="anim-in" />
+          <div style={{ width: 48, height: 4, background: GOLD, borderRadius: 2, marginBottom: 28 }} className="anim-in" />
 
           <div className="anim-up" style={{ animationDelay: "0.1s" }}>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(200,168,75,0.18)", border: `1px solid rgba(200,168,75,0.4)`, borderRadius: 20, padding: "5px 14px", marginBottom: 20 }}>
-              <span style={{ width: 7, height: 7, background: "#1a8fd1"OLD, borderRadius: "50%", display: "inline-block" }} />
+              <span style={{ width: 7, height: 7, background: GOLD, borderRadius: "50%", display: "inline-block" }} />
               <span style={{ fontSize: "0.75rem", color: GOLD, fontWeight: 700, letterSpacing: 1 }}>RESMI · TERAKREDITASI</span>
             </div>
 
@@ -284,7 +284,7 @@ export default function HomePage() {
             </p>
 
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <Link to="/daftar" className="btn-solid" style={{ background: "#1a8fd1"OLD, borderColor: GOLD, color: "#1a1a1a" }}>Daftar Sekarang</Link>
+              <Link to="/daftar" className="btn-solid" style={{ background: GOLD, borderColor: GOLD, color: "#1a1a1a" }}>Daftar Sekarang</Link>
               <a href="#program" className="btn-ghost">Lihat Program</a>
             </div>
 
@@ -318,7 +318,7 @@ export default function HomePage() {
               <h2 style={{ fontSize: "clamp(1.8rem,3.5vw,2.6rem)", fontWeight: 800, lineHeight: 1.2, marginBottom: 20, color: "#1a1a1a" }}>
                 PKBM Bina Mandiri
               </h2>
-              <div style={{ width: 40, height: 3, background: "#1a8fd1"OLD, marginBottom: 24, borderRadius: 2 }} />
+              <div style={{ width: 40, height: 3, background: GOLD, marginBottom: 24, borderRadius: 2 }} />
               <p style={{ color: "#555", lineHeight: 1.85, marginBottom: 14, fontSize: "0.96rem" }}>
                 <strong style={{ color: G }}>PKBM Bina Mandiri</strong> adalah lembaga pendidikan nonformal resmi di bawah naungan <strong>Yayasan Amal Bina Insani Darulhuda</strong> dan Dinas Pendidikan Kabupaten Sumedang, Jawa Barat.
               </p>
@@ -327,21 +327,21 @@ export default function HomePage() {
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
                 {["Resmi Kemendikbud","Naungan Dinas Pendidikan","Bebas Usia","Bebas Domisili","Platform Digital"].map(t => (
-                  <span key={t} style={{ padding: "6px 14px", background: "#1a8fd1"L, color: G, borderRadius: 4, fontSize: "0.8rem", fontWeight: 600 }}>{t}</span>
+                  <span key={t} style={{ padding: "6px 14px", background: GL, color: G, borderRadius: 4, fontSize: "0.8rem", fontWeight: 600 }}>{t}</span>
                 ))}
               </div>
             </div>
 
             {/* Brosur / Foto */}
             <div style={{ position: "relative" }}>
-              <img src="/images/brosur.jpg" alt="Brosur PKBM" style={{ width: "100%", borderRadius: 16, objectFit: "cover", boxShadow: `0 24px 64px rgba(27,77,53,0.18)` }} />
+              <img src="/images/brosur.jpg" alt="Brosur PKBM" style={{ width: "100%", borderRadius: 16, objectFit: "cover", boxShadow: `0 24px 64px rgba(26,143,209,0.18)` }} />
             </div>
           </div>
         </div>
       </section>
 
       {/* ══ PROGRAM ═════════════════════════════════════════════ */}
-      <section id="program" style={{ padding: "96px clamp(16px,4vw,48px)", background: "#1a8fd1"L }}>
+      <section id="program" style={{ padding: "96px clamp(16px,4vw,48px)", background: GL }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ marginBottom: 56, display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 16 }}>
             <div>
@@ -382,7 +382,7 @@ export default function HomePage() {
               { emoji: "🎯", judul: "Klub Minat Bakat", sub: "Lintas jenjang Paket A/B/C", desc: "Pengembangan bakat berdasarkan hasil asesmen psikometri. Bergabung dengan komunitas belajar sesuai minatmu." },
               { emoji: "🌐", judul: "Pelatihan Bahasa Asing", sub: "Inggris · Jepang · Mandarin", desc: "Program bertingkat dengan materi terstruktur dan proyek kolaboratif. Buka peluang karier internasional." },
             ].map((x, i) => (
-              <div key={i} style={{ background: "#fff", borderRadius: 12, padding: "28px 28px", display: "flex", gap: 20, alignItems: "flex-start", border: `1px solid #d8eee3` }}>
+              <div key={i} style={{ background: "#fff", borderRadius: 12, padding: "28px 28px", display: "flex", gap: 20, alignItems: "flex-start", border: `1px solid #c5e4ff` }}>
                 <div style={{ fontSize: "2.2rem", flexShrink: 0 }}>{x.emoji}</div>
                 <div>
                   <div style={{ fontSize: "0.72rem", color: GM, fontWeight: 700, letterSpacing: 1, marginBottom: 4 }}>{x.sub}</div>
@@ -402,7 +402,7 @@ export default function HomePage() {
             <div style={{ position: "sticky", top: 96 }}>
               <div style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: 2, color: GM, marginBottom: 10, textTransform: "uppercase" }}>Keunggulan</div>
               <h2 style={{ fontSize: "clamp(1.8rem,3.5vw,2.6rem)", fontWeight: 800, lineHeight: 1.2, marginBottom: 20, color: "#1a1a1a" }}>Kenapa Pilih<br />PKBM Bina<br />Mandiri?</h2>
-              <div style={{ width: 40, height: 3, background: "#1a8fd1"OLD, borderRadius: 2, marginBottom: 24 }} />
+              <div style={{ width: 40, height: 3, background: GOLD, borderRadius: 2, marginBottom: 24 }} />
               <p style={{ color: "#666", lineHeight: 1.8, fontSize: "0.93rem", marginBottom: 28 }}>
                 Lebih dari sekadar lembaga kejar paket — kami adalah ekosistem pendidikan digital yang dirancang untuk semua kalangan.
               </p>
@@ -427,9 +427,9 @@ export default function HomePage() {
       </section>
 
       {/* ══ CTA BANNER ══════════════════════════════════════════ */}
-      <section style={{ background: `linear-gradient(135deg, ${G} 0%, #0f3322 100%)`, padding: "72px clamp(16px,4vw,48px)", position: "relative", overflow: "hidden" }}>
+      <section style={{ background: `linear-gradient(135deg, ${G} 0%, #243B53 100%)`, padding: "72px clamp(16px,4vw,48px)", position: "relative", overflow: "hidden" }}>
         <div style={{ maxWidth: 800, margin: "0 auto", textAlign: "center", position: "relative", zIndex: 2 }}>
-          <div style={{ width: 40, height: 3, background: "#1a8fd1"OLD, margin: "0 auto 24px", borderRadius: 2 }} />
+          <div style={{ width: 40, height: 3, background: GOLD, margin: "0 auto 24px", borderRadius: 2 }} />
           <h2 style={{ fontSize: "clamp(1.7rem,4vw,2.8rem)", fontWeight: 900, color: "#fff", marginBottom: 14, lineHeight: 1.2 }}>
             Pendaftaran Warga Belajar<br /><span style={{ color: GOLD }}>Baru Dibuka!</span>
           </h2>
@@ -437,7 +437,7 @@ export default function HomePage() {
             Paket A · Paket B · Paket C — Terbuka untuk semua usia dari seluruh Indonesia.<br />Daftar online sekarang, proses cepat tanpa harus hadir langsung.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-            <Link to="/daftar" className="btn-solid" style={{ background: "#1a8fd1"OLD, borderColor: GOLD, color: "#1a1a1a", fontWeight: 800 }}>Daftar Sekarang</Link>
+            <Link to="/daftar" className="btn-solid" style={{ background: GOLD, borderColor: GOLD, color: "#1a1a1a", fontWeight: 800 }}>Daftar Sekarang</Link>
             <a href="#kontak" className="btn-ghost">Tanya Lebih Lanjut</a>
           </div>
         </div>
@@ -446,7 +446,7 @@ export default function HomePage() {
       </section>
 
       {/* ══ GALERI ══════════════════════════════════════════════ */}
-      <section id="galeri" style={{ padding: "96px clamp(16px,4vw,48px)", background: "#1a8fd1"L }}>
+      <section id="galeri" style={{ padding: "96px clamp(16px,4vw,48px)", background: GL }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ marginBottom: 48, textAlign: "center" }}>
             <div style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: 2, color: GM, marginBottom: 10, textTransform: "uppercase" }}>Dokumentasi</div>
@@ -454,7 +454,7 @@ export default function HomePage() {
           </div>
 
           {/* Featured */}
-          <div style={{ borderRadius: 16, overflow: "hidden", marginBottom: 16, height: 380, position: "relative", boxShadow: `0 16px 48px rgba(27,77,53,0.15)` }}>
+          <div style={{ borderRadius: 16, overflow: "hidden", marginBottom: 16, height: 380, position: "relative", boxShadow: `0 16px 48px rgba(26,143,209,0.15)` }}>
             <img src={GALERI[activeGaleri].src} alt={GALERI[activeGaleri].label}
               style={{ width: "100%", height: "100%", objectFit: "cover", transition: "opacity 0.4s" }} />
             <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(0,0,0,0.6))", padding: "32px 24px 20px" }}>
@@ -495,13 +495,13 @@ export default function HomePage() {
       </section>
 
       {/* ══ KONTAK ══════════════════════════════════════════════ */}
-      <section id="kontak" style={{ padding: "96px clamp(16px,4vw,48px)", background: "#1a8fd1"L }}>
+      <section id="kontak" style={{ padding: "96px clamp(16px,4vw,48px)", background: GL }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="two-col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "start" }}>
             <div>
               <div style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: 2, color: GM, marginBottom: 10, textTransform: "uppercase" }}>Hubungi Kami</div>
               <h2 style={{ fontSize: "clamp(1.8rem,3.5vw,2.4rem)", fontWeight: 800, color: "#1a1a1a", marginBottom: 16, lineHeight: 1.2 }}>Ada Pertanyaan?</h2>
-              <div style={{ width: 36, height: 3, background: "#1a8fd1"OLD, marginBottom: 24, borderRadius: 2 }} />
+              <div style={{ width: 36, height: 3, background: GOLD, marginBottom: 24, borderRadius: 2 }} />
               <p style={{ color: "#666", lineHeight: 1.82, marginBottom: 32, fontSize: "0.94rem" }}>
                 Tim kami siap membantu menemukan program yang tepat dan menjelaskan proses pendaftaran secara detail.
               </p>
@@ -513,7 +513,7 @@ export default function HomePage() {
                   ["🕐","Jam Layanan","Senin–Jumat, 08.00–16.00 WIB"],
                 ].map(([icon,label,val]) => (
                   <div key={label} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
-                    <div style={{ width: 40, height: 40, background: "#fff", borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.1rem", flexShrink: 0, border: `1px solid #d8eee3` }}>{icon}</div>
+                    <div style={{ width: 40, height: 40, background: "#fff", borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.1rem", flexShrink: 0, border: `1px solid #c5e4ff` }}>{icon}</div>
                     <div>
                       <div style={{ fontSize: "0.76rem", color: "#999", fontWeight: 600, marginBottom: 2 }}>{label}</div>
                       <div style={{ color: "#1a1a1a", fontWeight: 500, fontSize: "0.92rem" }}>{val}</div>
@@ -527,7 +527,7 @@ export default function HomePage() {
             </div>
 
             {/* Form */}
-            <div style={{ background: "#fff", borderRadius: 16, padding: "36px 32px", boxShadow: `0 8px 32px rgba(27,77,53,0.08)`, border: `1px solid #d8eee3` }}>
+            <div style={{ background: "#fff", borderRadius: 16, padding: "36px 32px", boxShadow: `0 8px 32px rgba(26,143,209,0.08)`, border: `1px solid #c5e4ff` }}>
               <h3 style={{ fontWeight: 800, fontSize: "1.15rem", marginBottom: 6, color: G }}>Kirim Pesan</h3>
               <p style={{ color: "#999", fontSize: "0.85rem", marginBottom: 24 }}>Kami balas dalam 1×24 jam kerja.</p>
               <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
