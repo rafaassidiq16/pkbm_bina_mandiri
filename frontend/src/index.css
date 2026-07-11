@@ -6,15 +6,12 @@
 
 /* ── CSS VARIABLES (Token Desain) ────────────────────────── */
 :root {
-  /* Palet Warna Utama - Branding Baru PKBM */
-  --color-primary:       #5CB8FF;   /* Sky Blue */
-  --color-primary-dark:  #1a8fd1;   /* Sky Blue Darker */
-  --color-primary-light: #EBF6FF;   /* Sky Blue Light */
-  --color-accent:        #FFaf5c;   /* Warm Orange */
-  --color-accent-dark:   #e8952a;   /* Warm Orange Darker */
-  --color-secondary-green:  #6BCB77; /* Fresh Green */
-  --color-secondary-yellow: #F9C846; /* Yellow */
-  --color-secondary-cream:  #FFF8EE; /* Soft Cream */
+  /* Palet Warna Utama */
+  --color-primary:       #1A6B3C;
+  --color-primary-dark:  #134f2d;
+  --color-primary-light: #e8f5ed;
+  --color-accent:        #F59E0B;
+  --color-accent-dark:   #d97706;
 
   /* Warna Role */
   --color-siswa:    #3B82F6;
@@ -29,10 +26,10 @@
   --color-info:    #3B82F6;
 
   /* Warna Netral */
-  --color-bg:         #F8FCFF;
+  --color-bg:         #F8FAFB;
   --color-surface:    #FFFFFF;
   --color-border:     #E2E8F0;
-  --color-text:       #243B53;   /* Dark Navy */
+  --color-text:       #1E293B;
   --color-text-muted: #64748B;
 
   /* Tipografi — semua Source Sans Pro */
@@ -233,14 +230,14 @@ img {
 .btn-primary:hover {
   background: var(--color-primary-dark);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(92, 184, 255, 0.4);
+  box-shadow: 0 4px 12px rgba(26, 107, 60, 0.3);
   text-decoration: none;
   color: white;
 }
 
 .btn-secondary { background: var(--color-primary-light); color: var(--color-primary); }
 .btn-secondary:hover {
-  background: #c5e4ff;
+  background: #d1e9da;
   text-decoration: none;
   color: var(--color-primary-dark);
 }
@@ -279,7 +276,7 @@ img {
 
 .form-input:focus {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(92, 184, 255, 0.12);
+  box-shadow: 0 0 0 3px rgba(26, 107, 60, 0.12);
 }
 
 .form-input::placeholder { color: var(--color-text-muted); opacity: 0.7; }
