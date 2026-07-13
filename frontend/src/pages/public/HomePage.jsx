@@ -8,7 +8,6 @@ const PROGRAMS = [
     title: "Kesetaraan Paket A",
     setara: "Setara SD / MI",
     img: "/images/kelas1.jpg",
-    warna: "#0891B2",
     desc: "Program kesetaraan pendidikan dasar untuk warga belajar yang ingin menuntaskan pendidikan setingkat Sekolah Dasar. Ijazah diakui resmi oleh negara.",
   },
   {
@@ -16,7 +15,6 @@ const PROGRAMS = [
     title: "Kesetaraan Paket B",
     setara: "Setara SMP / MTs",
     img: "/images/kelas2.jpg",
-    warna: "#10B981",
     desc: "Program kesetaraan untuk warga belajar yang ingin menyelesaikan pendidikan setingkat Sekolah Menengah Pertama dengan jadwal fleksibel.",
   },
   {
@@ -24,7 +22,6 @@ const PROGRAMS = [
     title: "Kesetaraan Paket C",
     setara: "Setara SMA / MA",
     img: "/images/rapat1.jpg",
-    warna: "#0891B2",
     desc: "Program unggulan kami. Ijazah Paket C memiliki hak eligibilitas yang sama dengan lulusan SMA/SMK — termasuk untuk masuk PTN.",
   },
 ];
@@ -55,13 +52,16 @@ const FAQS = [
   { q: "Apa itu Klub Minat Bakat dan Kelas Bahasa Asing?", a: "Program tambahan di luar KBM reguler. Klub Minat Bakat membantu pengembangan potensi berdasarkan asesmen. Kelas Bahasa Asing tersedia untuk Bahasa Inggris, Jepang, dan Mandarin." },
 ];
 
-// ── WARNA BARU ──────────────────────────────────────────────
-const PRIMARY = "#0891B2";       // Sky Blue
-const SECONDARY = "#10B981";     // Fresh Green
-const ACCENT = "#EA580C";        // Warm Orange
-const LIGHT_BG = "#F3F4F6";      // Light Gray
-const DARK_TEXT = "#1F2937";     // Dark text
-const LIGHT_TEXT = "#6B7280";    // Light text
+// ── WARNA FINAL (BENAR & RAPI) ──────────────────────────────
+const PRIMARY = "#5CB8FF";           // Sky Blue
+const ACCENT = "#FFAF5C";            // Warm Orange
+const SECONDARY = "#6BCB77";         // Fresh Green
+const TERTIARY = "#F9C846";          // Yellow
+const LIGHT_BG = "#FFF8EE";          // Soft Cream
+const DARK_TEXT = "#243B53";         // Dark Navy
+const LIGHT_TEXT = "#5A6B7F";        // Navy terang
+const BORDER_COLOR = "#E8F1F7";      // Border blue subtle
+const WHITE = "#FFFFFF";
 
 export default function HomePage() {
   const [scrollY, setScrollY] = useState(0);
@@ -84,7 +84,7 @@ export default function HomePage() {
   const navScrolled = scrollY > 80;
 
   return (
-    <div style={{ fontFamily: "'Source Sans Pro', -apple-system, sans-serif", background: "#FAFFF9", color: DARK_TEXT, overflowX: "hidden" }}>
+    <div style={{ fontFamily: "'Source Sans Pro', -apple-system, sans-serif", background: WHITE, color: DARK_TEXT, overflowX: "hidden" }}>
       <style>{`
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
@@ -107,56 +107,49 @@ export default function HomePage() {
         .anim-in   { animation: slideIn 0.6s ease both; }
         .anim-sc   { animation: scaleIn 0.5s ease both; }
 
-        .nav-a {
-          text-decoration: none; font-weight: 600; font-size: 0.9rem;
-          padding: 4px 0; border-bottom: 2px solid transparent;
-          transition: color 0.2s, border-color 0.2s;
-          text-shadow: 0 1px 4px rgba(0,0,0,0.45);
-        }
-        .nav-a:hover { border-bottom-color: currentColor; }
-        .nav-a-scrolled { text-shadow: none !important; }
-
         .btn-solid {
           display: inline-block; text-decoration: none;
-          background: ${PRIMARY}; color: #fff;
+          background: ${ACCENT}; color: ${WHITE};
           padding: 13px 28px; border-radius: 6px;
           font-weight: 700; font-size: 0.92rem; letter-spacing: 0.3px;
-          border: 2px solid ${PRIMARY};
+          border: 2px solid ${ACCENT};
           transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
           cursor: pointer;
-          box-shadow: 0 4px 12px rgba(8, 145, 178, 0.25);
+          box-shadow: 0 4px 12px rgba(255, 175, 92, 0.25);
         }
         .btn-solid:hover { 
-          background: #0a7fa3; 
+          background: #ff9940; 
           transform: translateY(-2px);
-          box-shadow: 0 8px 20px rgba(8, 145, 178, 0.35);
+          box-shadow: 0 8px 20px rgba(255, 175, 92, 0.35);
         }
 
         .btn-ghost {
           display: inline-block; text-decoration: none;
-          background: transparent; color: #fff;
+          background: transparent; color: ${WHITE};
           padding: 13px 28px; border-radius: 6px;
           font-weight: 600; font-size: 0.92rem;
           border: 2px solid rgba(255,255,255,0.55);
           transition: background 0.2s, border-color 0.2s;
           cursor: pointer;
         }
-        .btn-ghost:hover { background: rgba(255,255,255,0.12); border-color: #fff; }
+        .btn-ghost:hover { background: rgba(255,255,255,0.12); border-color: ${WHITE}; }
 
         .prog-card {
           border-radius: 12px; overflow: hidden;
-          box-shadow: 0 2px 16px rgba(8, 145, 178, 0.10);
+          box-shadow: 0 2px 16px rgba(92, 184, 255, 0.10);
           transition: transform 0.25s, box-shadow 0.25s;
-          background: #fff;
+          background: ${WHITE};
+          border: 1px solid ${BORDER_COLOR};
         }
-        .prog-card:hover { transform: translateY(-8px); box-shadow: 0 16px 40px rgba(8, 145, 178, 0.18); }
+        .prog-card:hover { transform: translateY(-8px); box-shadow: 0 16px 40px rgba(92, 184, 255, 0.18); }
 
         .keung-item {
-          padding: 28px 24px; border-left: 3px solid ${LIGHT_BG};
+          padding: 28px 24px; border-left: 3px solid ${PRIMARY};
           transition: border-color 0.2s, background 0.2s;
           border-radius: 0 8px 8px 0;
+          background: ${LIGHT_BG};
         }
-        .keung-item:hover { border-left-color: ${SECONDARY}; background: ${LIGHT_BG}; }
+        .keung-item:hover { border-left-color: ${ACCENT}; background: rgba(255, 175, 92, 0.05); }
 
         .faq-btn {
           width: 100%; background: none; border: none; text-align: left;
@@ -169,13 +162,15 @@ export default function HomePage() {
 
         .inp {
           width: 100%; padding: 12px 16px;
-          border: 1.5px solid #d0e8d8; border-radius: 6px;
+          border: 1.5px solid ${BORDER_COLOR}; border-radius: 6px;
           font-family: 'Source Sans Pro', -apple-system, sans-serif;
           font-size: 0.93rem; outline: none;
           transition: border-color 0.2s;
-          background: #fff;
+          background: ${WHITE};
+          color: ${DARK_TEXT};
         }
         .inp:focus { border-color: ${PRIMARY}; }
+        .inp::placeholder { color: #999; }
 
         @media (max-width: 768px) {
           .desk-nav { display: none !important; }
@@ -195,47 +190,42 @@ export default function HomePage() {
       {/* ══ NAVBAR ══════════════════════════════════════════════ */}
       <header style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 999,
-        background: navScrolled ? "rgba(255,255,255,0.97)" : "linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, transparent 100%)",
-        borderBottom: navScrolled ? `1px solid ${LIGHT_BG}` : "none",
+        background: navScrolled ? "rgba(255, 255, 255, 0.98)" : "linear-gradient(to bottom, rgba(36, 59, 83, 0.5) 0%, transparent 100%)",
+        borderBottom: navScrolled ? `1px solid ${BORDER_COLOR}` : "none",
         backdropFilter: navScrolled ? "blur(12px)" : "none",
         transition: "background 0.35s, border 0.35s",
         padding: "0 clamp(16px, 4vw, 48px)",
       }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", height: 68, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-
-          {/* Logo */}
           <Link to="/" style={{ display: "flex", alignItems: "center", gap: 12, textDecoration: "none" }}>
-            <img src="/images/logo_pkbm.jpg" alt="Logo PKBM" style={{ width: 44, height: 44, borderRadius: "50%", objectFit: "cover", border: `2px solid ${navScrolled ? LIGHT_BG : "rgba(255,255,255,0.4)"}` }} />
+            <img src="/images/logo_pkbm.jpg" alt="Logo PKBM" style={{ width: 44, height: 44, borderRadius: "50%", objectFit: "cover", border: `2px solid ${navScrolled ? BORDER_COLOR : "rgba(255,255,255,0.4)"}` }} />
             <div>
-              <div style={{ fontWeight: 800, fontSize: "0.92rem", color: navScrolled ? PRIMARY : "#fff", lineHeight: 1.15, transition: "color 0.3s", textShadow: navScrolled ? "none" : "0 1px 4px rgba(0,0,0,0.5)" }}>PKBM Bina Mandiri</div>
+              <div style={{ fontWeight: 800, fontSize: "0.92rem", color: navScrolled ? DARK_TEXT : WHITE, lineHeight: 1.15, transition: "color 0.3s", textShadow: navScrolled ? "none" : "0 1px 4px rgba(0,0,0,0.5)" }}>PKBM Bina Mandiri</div>
               <div style={{ fontSize: "0.67rem", color: navScrolled ? LIGHT_TEXT : "rgba(255,255,255,0.9)", transition: "color 0.3s", textShadow: navScrolled ? "none" : "0 1px 3px rgba(0,0,0,0.5)" }}>Kab. Sumedang · Jawa Barat</div>
             </div>
           </Link>
 
-          {/* Desktop nav */}
           <nav className="desk-nav" style={{ display: "flex", alignItems: "center", gap: 32 }}>
             {[["#profil","Profil"],["#program","Program"],["#keunggulan","Keunggulan"],["#galeri","Galeri"],["#faq","FAQ"],["#kontak","Kontak"]].map(([h,l]) => (
-              <a key={l} href={h} className={`nav-a${navScrolled ? " nav-a-scrolled" : ""}`} style={{ color: navScrolled ? DARK_TEXT : "#fff" }}>{l}</a>
+              <a key={l} href={h} style={{ color: navScrolled ? DARK_TEXT : WHITE, textDecoration: "none", fontWeight: 600, fontSize: "0.9rem", transition: "color 0.2s", textShadow: navScrolled ? "none" : "0 1px 4px rgba(0,0,0,0.3)" }}>{l}</a>
             ))}
-            <div style={{ width: 1, height: 20, background: navScrolled ? "#ddd" : "rgba(255,255,255,0.3)" }} />
-            <Link to="/login" className="nav-a" style={{ color: navScrolled ? PRIMARY : "rgba(255,255,255,0.9)" }}>Masuk</Link>
-            <Link to="/daftar" className="btn-solid" style={{ padding: "9px 20px", fontSize: "0.86rem", background: navScrolled ? PRIMARY : "#fff", color: navScrolled ? "#fff" : PRIMARY, borderColor: navScrolled ? PRIMARY : "#fff" }}>Daftar</Link>
+            <div style={{ width: 1, height: 20, background: navScrolled ? BORDER_COLOR : "rgba(255,255,255,0.3)" }} />
+            <Link to="/login" style={{ color: navScrolled ? DARK_TEXT : WHITE, textDecoration: "none", fontWeight: 600, fontSize: "0.9rem", transition: "color 0.2s" }}>Masuk</Link>
+            <Link to="/daftar" className="btn-solid">Daftar</Link>
           </nav>
 
-          {/* Mobile btn */}
           <button className="mob-btn" onClick={() => setMenuOpen(!menuOpen)}
             style={{ display: "none", background: "none", border: "none", cursor: "pointer", flexDirection: "column", gap: 5, padding: 4 }}>
             {[0,1,2].map(i => (
-              <span key={i} style={{ width: 24, height: 2, background: navScrolled ? PRIMARY : "#fff", borderRadius: 2, display: "block", transition: "all 0.3s" }} />
+              <span key={i} style={{ width: 24, height: 2, background: navScrolled ? DARK_TEXT : WHITE, borderRadius: 2, display: "block", transition: "all 0.3s" }} />
             ))}
           </button>
         </div>
 
-        {/* Mobile menu */}
         {menuOpen && (
-          <div style={{ background: "#fff", borderTop: `3px solid ${PRIMARY}`, padding: "20px clamp(16px,4vw,48px)" }}>
+          <div style={{ background: WHITE, borderTop: `3px solid ${ACCENT}`, padding: "20px clamp(16px,4vw,48px)" }}>
             {[["#profil","Profil"],["#program","Program"],["#keunggulan","Keunggulan"],["#galeri","Galeri"],["#faq","FAQ"],["#kontak","Kontak"]].map(([h,l]) => (
-              <a key={l} href={h} onClick={() => setMenuOpen(false)} style={{ display: "block", padding: "12px 0", borderBottom: `1px solid ${LIGHT_BG}`, color: PRIMARY, textDecoration: "none", fontWeight: 500 }}>{l}</a>
+              <a key={l} href={h} onClick={() => setMenuOpen(false)} style={{ display: "block", padding: "12px 0", borderBottom: `1px solid ${BORDER_COLOR}`, color: PRIMARY, textDecoration: "none", fontWeight: 500 }}>{l}</a>
             ))}
             <div style={{ display: "flex", gap: 10, marginTop: 16 }}>
               <Link to="/login" onClick={() => setMenuOpen(false)} style={{ flex: 1, textAlign: "center", padding: 11, border: `2px solid ${PRIMARY}`, borderRadius: 4, color: PRIMARY, textDecoration: "none", fontWeight: 600, fontSize: "0.9rem" }}>Masuk</Link>
@@ -246,22 +236,19 @@ export default function HomePage() {
       </header>
 
       {/* ══ HERO ════════════════════════════════════════════════ */}
-      <section ref={heroRef} style={{ minHeight: "100vh", display: "grid", gridTemplateColumns: "1fr 1fr", position: "relative", overflow: "hidden" }} className="hero-grid">
-
-        {/* Kiri — Foto gedung */}
-        <div className="hero-img-side" style={{ position: "relative", overflow: "hidden" }}>
+      <section ref={heroRef} style={{ minHeight: "100vh", display: "grid", gridTemplateColumns: "1fr 1fr", position: "relative", overflow: "hidden", marginTop: 68 }} className="hero-grid">
+        <div className="hero-img-side" style={{ position: "relative", overflow: "hidden", background: `linear-gradient(135deg, ${PRIMARY} 0%, #3d9dd4 100%)` }}>
           <img src="/images/gedung.jpg" alt="Gedung PKBM Bina Mandiri"
             style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center",
-              transform: `scale(1.05) translateY(${scrollY * 0.03}px)`, transition: "transform 0.1s linear" }} />
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, transparent 60%, #FAFFF9 100%)" }} />
-          <div style={{ position: "absolute", bottom: 32, left: 28, background: "rgba(8, 145, 178, 0.85)", backdropFilter: "blur(8px)", color: "#fff", padding: "10px 18px", borderRadius: 6, fontSize: "0.8rem", fontWeight: 600 }}>
+              transform: `scale(1.05) translateY(${scrollY * 0.03}px)`, transition: "transform 0.1s linear", opacity: 0.9 }} />
+          <div style={{ position: "absolute", inset: 0, background: `linear-gradient(to right, transparent 60%, ${WHITE} 100%)` }} />
+          <div style={{ position: "absolute", bottom: 32, left: 28, background: `rgba(255, 175, 92, 0.85)`, backdropFilter: "blur(8px)", color: WHITE, padding: "10px 18px", borderRadius: 6, fontSize: "0.8rem", fontWeight: 600 }}>
             📍 Kab. Sumedang, Jawa Barat
           </div>
         </div>
 
-        {/* Kanan — Teks */}
         <div style={{
-          background: `linear-gradient(160deg, ${PRIMARY} 0%, #0a7fa3 100%)`,
+          background: `linear-gradient(160deg, ${PRIMARY} 0%, #3d9dd4 100%)`,
           display: "flex", flexDirection: "column", justifyContent: "center",
           padding: "120px clamp(28px,5vw,72px) 60px",
           position: "relative",
@@ -269,27 +256,27 @@ export default function HomePage() {
           <div style={{ width: 48, height: 4, background: ACCENT, borderRadius: 2, marginBottom: 28 }} className="anim-in" />
 
           <div className="anim-up" style={{ animationDelay: "0.1s" }}>
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(234, 88, 12, 0.18)", border: `1px solid rgba(234, 88, 12, 0.4)`, borderRadius: 20, padding: "5px 14px", marginBottom: 20 }}>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255, 175, 92, 0.18)", border: `1px solid rgba(255, 175, 92, 0.4)`, borderRadius: 20, padding: "5px 14px", marginBottom: 20 }}>
               <span style={{ width: 7, height: 7, background: ACCENT, borderRadius: "50%", display: "inline-block" }} />
               <span style={{ fontSize: "0.75rem", color: ACCENT, fontWeight: 700, letterSpacing: 1 }}>RESMI · TERAKREDITASI</span>
             </div>
 
-            <h1 style={{ fontSize: "clamp(2.2rem, 4.5vw, 3.6rem)", fontWeight: 900, color: "#fff", lineHeight: 1.12, marginBottom: 8, letterSpacing: "-0.5px" }}>
+            <h1 style={{ fontSize: "clamp(2.2rem, 4.5vw, 3.6rem)", fontWeight: 900, color: WHITE, lineHeight: 1.12, marginBottom: 8, letterSpacing: "-0.5px" }}>
               Pendidikan
             </h1>
             <h1 style={{ fontSize: "clamp(2.2rem, 4.5vw, 3.6rem)", fontWeight: 900, lineHeight: 1.12, marginBottom: 8, letterSpacing: "-0.5px" }}>
               <span style={{ color: ACCENT }}>Setara,</span>
             </h1>
-            <h1 style={{ fontSize: "clamp(2.2rem, 4.5vw, 3.6rem)", fontWeight: 900, color: "#fff", lineHeight: 1.12, marginBottom: 28, letterSpacing: "-0.5px" }}>
+            <h1 style={{ fontSize: "clamp(2.2rem, 4.5vw, 3.6rem)", fontWeight: 900, color: WHITE, lineHeight: 1.12, marginBottom: 28, letterSpacing: "-0.5px" }}>
               Masa Depan<br />Gemilang.
             </h1>
 
             <p style={{ color: "rgba(255,255,255,0.78)", fontSize: "1rem", lineHeight: 1.8, marginBottom: 36, maxWidth: 420 }}>
-              Penyelenggara resmi Program Kesetaraan <strong style={{ color: "#fff" }}>Paket A, B, dan C</strong> di bawah naungan Dinas Pendidikan Kabupaten Sumedang. Terbuka untuk semua usia, seluruh Indonesia.
+              Penyelenggara resmi Program Kesetaraan <strong style={{ color: WHITE }}>Paket A, B, dan C</strong> di bawah naungan Dinas Pendidikan Kabupaten Sumedang. Terbuka untuk semua usia, seluruh Indonesia.
             </p>
 
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <Link to="/daftar" className="btn-solid" style={{ background: ACCENT, borderColor: ACCENT, color: "#fff" }}>Daftar Sekarang</Link>
+              <Link to="/daftar" className="btn-solid">Daftar Sekarang</Link>
               <a href="#program" className="btn-ghost">Lihat Program</a>
             </div>
 
@@ -309,7 +296,7 @@ export default function HomePage() {
       </section>
 
       {/* ══ PROFIL ══════════════════════════════════════════════ */}
-      <section id="profil" style={{ padding: "96px clamp(16px,4vw,48px)", background: "#fff" }}>
+      <section id="profil" style={{ padding: "96px clamp(16px,4vw,48px)", background: WHITE }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="two-col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 72, alignItems: "center" }}>
             <div>
@@ -336,7 +323,7 @@ export default function HomePage() {
             </div>
 
             <div style={{ position: "relative" }}>
-              <img src="/images/brosur.jpg" alt="Brosur PKBM" style={{ width: "100%", borderRadius: 16, objectFit: "cover", boxShadow: `0 24px 64px rgba(8, 145, 178, 0.18)` }} />
+              <img src="/images/brosur.jpg" alt="Brosur PKBM" style={{ width: "100%", borderRadius: 16, objectFit: "cover", boxShadow: `0 24px 64px rgba(92, 184, 255, 0.18)` }} />
             </div>
           </div>
         </div>
@@ -360,7 +347,7 @@ export default function HomePage() {
                   <img src={p.img} alt={p.title} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.4s" }}
                     onMouseOver={e => e.currentTarget.style.transform = "scale(1.06)"}
                     onMouseOut={e => e.currentTarget.style.transform = "scale(1)"} />
-                  <div style={{ position: "absolute", top: 14, left: 14, background: p.warna, color: "#fff", padding: "5px 14px", borderRadius: 4, fontSize: "0.8rem", fontWeight: 800, letterSpacing: 0.5 }}>
+                  <div style={{ position: "absolute", top: 14, left: 14, background: PRIMARY, color: WHITE, padding: "5px 14px", borderRadius: 4, fontSize: "0.8rem", fontWeight: 800, letterSpacing: 0.5 }}>
                     PAKET {p.kode}
                   </div>
                 </div>
@@ -376,13 +363,12 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* Program tambahan */}
           <div style={{ marginTop: 32, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }} className="two-col">
             {[
               { emoji: "🎯", judul: "Klub Minat Bakat", sub: "Lintas jenjang Paket A/B/C", desc: "Pengembangan bakat berdasarkan hasil asesmen psikometri. Bergabung dengan komunitas belajar sesuai minatmu." },
               { emoji: "🌐", judul: "Pelatihan Bahasa Asing", sub: "Inggris · Jepang · Mandarin", desc: "Program bertingkat dengan materi terstruktur dan proyek kolaboratif. Buka peluang karier internasional." },
             ].map((x, i) => (
-              <div key={i} style={{ background: "#fff", borderRadius: 12, padding: "28px 28px", display: "flex", gap: 20, alignItems: "flex-start", border: `1px solid #d8eee3` }}>
+              <div key={i} style={{ background: WHITE, borderRadius: 12, padding: "28px 28px", display: "flex", gap: 20, alignItems: "flex-start", border: `1px solid ${BORDER_COLOR}` }}>
                 <div style={{ fontSize: "2.2rem", flexShrink: 0 }}>{x.emoji}</div>
                 <div>
                   <div style={{ fontSize: "0.72rem", color: SECONDARY, fontWeight: 700, letterSpacing: 1, marginBottom: 4 }}>{x.sub}</div>
@@ -395,9 +381,8 @@ export default function HomePage() {
         </div>
       </section>
 
-
       {/* ══ KEUNGGULAN ══════════════════════════════════════════ */}
-      <section id="keunggulan" style={{ padding: "96px clamp(16px,4vw,48px)", background: "#fff" }}>
+      <section id="keunggulan" style={{ padding: "96px clamp(16px,4vw,48px)", background: WHITE }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="two-col" style={{ display: "grid", gridTemplateColumns: "5fr 7fr", gap: 72, alignItems: "start" }}>
             <div style={{ position: "sticky", top: 96 }}>
@@ -428,17 +413,17 @@ export default function HomePage() {
       </section>
 
       {/* ══ CTA BANNER ══════════════════════════════════════════ */}
-      <section style={{ background: `linear-gradient(135deg, ${PRIMARY} 0%, #0a7fa3 100%)`, padding: "72px clamp(16px,4vw,48px)", position: "relative", overflow: "hidden" }}>
+      <section style={{ background: `linear-gradient(135deg, ${PRIMARY} 0%, #3d9dd4 100%)`, padding: "72px clamp(16px,4vw,48px)", position: "relative", overflow: "hidden" }}>
         <div style={{ maxWidth: 800, margin: "0 auto", textAlign: "center", position: "relative", zIndex: 2 }}>
           <div style={{ width: 40, height: 3, background: ACCENT, margin: "0 auto 24px", borderRadius: 2 }} />
-          <h2 style={{ fontSize: "clamp(1.7rem,4vw,2.8rem)", fontWeight: 900, color: "#fff", marginBottom: 14, lineHeight: 1.2 }}>
+          <h2 style={{ fontSize: "clamp(1.7rem,4vw,2.8rem)", fontWeight: 900, color: WHITE, marginBottom: 14, lineHeight: 1.2 }}>
             Pendaftaran Warga Belajar<br /><span style={{ color: ACCENT }}>Baru Dibuka!</span>
           </h2>
           <p style={{ color: "rgba(255,255,255,0.78)", marginBottom: 36, fontSize: "1rem", lineHeight: 1.8 }}>
             Paket A · Paket B · Paket C — Terbuka untuk semua usia dari seluruh Indonesia.<br />Daftar online sekarang, proses cepat tanpa harus hadir langsung.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-            <Link to="/daftar" className="btn-solid" style={{ background: ACCENT, borderColor: ACCENT, color: "#fff", fontWeight: 800 }}>Daftar Sekarang</Link>
+            <Link to="/daftar" className="btn-solid" style={{ fontWeight: 800 }}>Daftar Sekarang</Link>
             <a href="#kontak" className="btn-ghost">Tanya Lebih Lanjut</a>
           </div>
         </div>
@@ -454,16 +439,14 @@ export default function HomePage() {
             <h2 style={{ fontSize: "clamp(1.8rem,3.5vw,2.6rem)", fontWeight: 800, color: DARK_TEXT }}>Galeri Kegiatan</h2>
           </div>
 
-          {/* Featured */}
-          <div style={{ borderRadius: 16, overflow: "hidden", marginBottom: 16, height: 380, position: "relative", boxShadow: `0 16px 48px rgba(8, 145, 178, 0.15)` }}>
+          <div style={{ borderRadius: 16, overflow: "hidden", marginBottom: 16, height: 380, position: "relative", boxShadow: `0 16px 48px rgba(92, 184, 255, 0.15)` }}>
             <img src={GALERI[activeGaleri].src} alt={GALERI[activeGaleri].label}
               style={{ width: "100%", height: "100%", objectFit: "cover", transition: "opacity 0.4s" }} />
-            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(0,0,0,0.6))", padding: "32px 24px 20px" }}>
-              <span style={{ color: "#fff", fontWeight: 700, fontSize: "0.95rem" }}>{GALERI[activeGaleri].label}</span>
+            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(36, 59, 83, 0.7))", padding: "32px 24px 20px" }}>
+              <span style={{ color: WHITE, fontWeight: 700, fontSize: "0.95rem" }}>{GALERI[activeGaleri].label}</span>
             </div>
           </div>
 
-          {/* Thumbnails */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: 10 }}>
             {GALERI.map((g, i) => (
               <div key={i} onClick={() => setActiveGaleri(i)} style={{ cursor: "pointer", borderRadius: 8, overflow: "hidden", height: 80, border: `2px solid ${i === activeGaleri ? PRIMARY : "transparent"}`, transition: "border-color 0.2s", opacity: i === activeGaleri ? 1 : 0.65 }}>
@@ -475,14 +458,14 @@ export default function HomePage() {
       </section>
 
       {/* ══ FAQ ═════════════════════════════════════════════════ */}
-      <section id="faq" style={{ padding: "96px clamp(16px,4vw,48px)", background: "#fff" }}>
+      <section id="faq" style={{ padding: "96px clamp(16px,4vw,48px)", background: WHITE }}>
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 52 }}>
             <div style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: 2, color: SECONDARY, marginBottom: 10, textTransform: "uppercase" }}>Tanya Jawab</div>
             <h2 style={{ fontSize: "clamp(1.8rem,3.5vw,2.4rem)", fontWeight: 800, color: DARK_TEXT }}>Pertanyaan Umum</h2>
           </div>
           {FAQS.map((f, i) => (
-            <div key={i} style={{ borderBottom: `1px solid ${LIGHT_BG}` }}>
+            <div key={i} style={{ borderBottom: `1px solid ${BORDER_COLOR}` }}>
               <button className="faq-btn" onClick={() => setOpenFaq(openFaq === i ? null : i)}>
                 <span>{f.q}</span>
                 <span style={{ fontSize: "1.3rem", color: PRIMARY, transform: openFaq === i ? "rotate(45deg)" : "none", transition: "transform 0.25s", display: "inline-block", minWidth: 22, textAlign: "center", flexShrink: 0 }}>+</span>
@@ -514,7 +497,7 @@ export default function HomePage() {
                   ["🕐","Jam Layanan","Senin–Jumat, 08.00–16.00 WIB"],
                 ].map(([icon,label,val]) => (
                   <div key={label} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
-                    <div style={{ width: 40, height: 40, background: "#fff", borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.1rem", flexShrink: 0, border: `1px solid #d8eee3` }}>{icon}</div>
+                    <div style={{ width: 40, height: 40, background: WHITE, borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.1rem", flexShrink: 0, border: `1px solid ${BORDER_COLOR}` }}>{icon}</div>
                     <div>
                       <div style={{ fontSize: "0.76rem", color: "#999", fontWeight: 600, marginBottom: 2 }}>{label}</div>
                       <div style={{ color: DARK_TEXT, fontWeight: 500, fontSize: "0.92rem" }}>{val}</div>
@@ -526,8 +509,7 @@ export default function HomePage() {
               <img src="/images/rapat2.jpg" alt="Tim PKBM" style={{ width: "100%", borderRadius: 12, marginTop: 32, objectFit: "cover", maxHeight: 180 }} />
             </div>
 
-            {/* Form */}
-            <div style={{ background: "#fff", borderRadius: 16, padding: "36px 32px", boxShadow: `0 8px 32px rgba(8, 145, 178, 0.08)`, border: `1px solid #d8eee3` }}>
+            <div style={{ background: WHITE, borderRadius: 16, padding: "36px 32px", boxShadow: `0 8px 32px rgba(92, 184, 255, 0.08)`, border: `1px solid ${BORDER_COLOR}` }}>
               <h3 style={{ fontWeight: 800, fontSize: "1.15rem", marginBottom: 6, color: PRIMARY }}>Kirim Pesan</h3>
               <p style={{ color: "#999", fontSize: "0.85rem", marginBottom: 24 }}>Kami balas dalam 1×24 jam kerja.</p>
               <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
@@ -552,7 +534,7 @@ export default function HomePage() {
       </section>
 
       {/* ══ LOKASI / MAPS ═══════════════════════════════════════ */}
-      <section style={{ padding: "0", background: "#fff" }}>
+      <section style={{ padding: "0", background: WHITE }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", padding: "80px clamp(16px,4vw,48px) 0" }}>
           <div style={{ textAlign: "center", marginBottom: 36 }}>
             <div style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: 2, color: SECONDARY, marginBottom: 10, textTransform: "uppercase" }}>Lokasi Kami</div>
@@ -574,7 +556,7 @@ export default function HomePage() {
           />
           <div style={{
             position: "absolute", top: 20, right: "clamp(16px,4vw,48px)",
-            background: "#fff", borderRadius: 12, padding: "18px 22px",
+            background: WHITE, borderRadius: 12, padding: "18px 22px",
             boxShadow: "0 8px 32px rgba(0,0,0,0.15)",
             maxWidth: 280, zIndex: 10,
           }}>
@@ -603,7 +585,7 @@ export default function HomePage() {
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
                 <img src="/images/logo_pkbm.jpg" alt="Logo" style={{ width: 44, height: 44, borderRadius: "50%", objectFit: "cover", border: "2px solid rgba(255,255,255,0.2)" }} />
                 <div>
-                  <div style={{ fontWeight: 800, color: "#fff", fontSize: "0.93rem" }}>PKBM Bina Mandiri</div>
+                  <div style={{ fontWeight: 800, color: WHITE, fontSize: "0.93rem" }}>PKBM Bina Mandiri</div>
                   <div style={{ fontSize: "0.68rem", opacity: 0.6 }}>Kab. Sumedang, Jawa Barat</div>
                 </div>
               </div>
@@ -612,7 +594,7 @@ export default function HomePage() {
               </p>
               <div style={{ marginTop: 20, padding: "10px 16px", background: "rgba(255,255,255,0.08)", borderRadius: 6, display: "inline-block" }}>
                 <div style={{ fontSize: "0.7rem", color: ACCENT, fontWeight: 700, marginBottom: 2 }}>YAYASAN</div>
-                <div style={{ fontSize: "0.82rem", color: "#fff", fontWeight: 600 }}>Amal Bina Insani Darulhuda</div>
+                <div style={{ fontSize: "0.82rem", color: WHITE, fontWeight: 600 }}>Amal Bina Insani Darulhuda</div>
               </div>
             </div>
 
@@ -622,7 +604,7 @@ export default function HomePage() {
               ["Akun",["Masuk / Login","Daftar Siswa Baru","Lupa Password"]],
             ].map(([title, items]) => (
               <div key={title}>
-                <h4 style={{ color: "#fff", fontWeight: 700, fontSize: "0.9rem", marginBottom: 16 }}>{title}</h4>
+                <h4 style={{ color: WHITE, fontWeight: 700, fontSize: "0.9rem", marginBottom: 16 }}>{title}</h4>
                 {items.map(item => (
                   <a key={item} href="#" style={{ display: "block", color: "rgba(255,255,255,0.58)", textDecoration: "none", fontSize: "0.85rem", marginBottom: 9, transition: "color 0.2s" }}
                     onMouseOver={e => e.target.style.color = ACCENT}
@@ -641,3 +623,4 @@ export default function HomePage() {
     </div>
   );
 }
+
