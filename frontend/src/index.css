@@ -6,30 +6,30 @@
 
 /* ── CSS VARIABLES (Token Desain) ────────────────────────── */
 :root {
-  /* Palet Warna Utama */
-  --color-primary:       #1A6B3C;
-  --color-primary-dark:  #134f2d;
-  --color-primary-light: #e8f5ed;
-  --color-accent:        #F59E0B;
-  --color-accent-dark:   #d97706;
+  /* Palet Warna Utama - BARU */
+  --color-primary:       #5CB8FF;
+  --color-primary-dark:  #3a9ce8;
+  --color-primary-light: #e3f2fd;
+  --color-accent:        #FFaf5c;
+  --color-accent-dark:   #e89a47;
 
   /* Warna Role */
-  --color-siswa:    #3B82F6;
-  --color-tutor:    #8B5CF6;
-  --color-admin:    #EC4899;
-  --color-pimpinan: #F59E0B;
+  --color-siswa:    #5CB8FF;
+  --color-tutor:    #6BCB77;
+  --color-admin:    #FFaf5c;
+  --color-pimpinan: #F9C846;
 
-  /* Warna Semantik */
-  --color-success: #10B981;
+  /* Warna Semantik - BARU */
+  --color-success: #6BCB77;
   --color-danger:  #EF4444;
-  --color-warning: #F59E0B;
-  --color-info:    #3B82F6;
+  --color-warning: #F9C846;
+  --color-info:    #5CB8FF;
 
-  /* Warna Netral */
-  --color-bg:         #F8FAFB;
+  /* Warna Netral - BARU */
+  --color-bg:         #FFF8EE;
   --color-surface:    #FFFFFF;
   --color-border:     #E2E8F0;
-  --color-text:       #1E293B;
+  --color-text:       #243B53;
   --color-text-muted: #64748B;
 
   /* Tipografi — semua Source Sans Pro */
@@ -230,14 +230,14 @@ img {
 .btn-primary:hover {
   background: var(--color-primary-dark);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(26, 107, 60, 0.3);
+  box-shadow: 0 4px 12px rgba(92, 184, 255, 0.3);
   text-decoration: none;
   color: white;
 }
 
 .btn-secondary { background: var(--color-primary-light); color: var(--color-primary); }
 .btn-secondary:hover {
-  background: #d1e9da;
+  background: #bde5ff;
   text-decoration: none;
   color: var(--color-primary-dark);
 }
@@ -276,7 +276,7 @@ img {
 
 .form-input:focus {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(26, 107, 60, 0.12);
+  box-shadow: 0 0 0 3px rgba(92, 184, 255, 0.12);
 }
 
 .form-input::placeholder { color: var(--color-text-muted); opacity: 0.7; }
