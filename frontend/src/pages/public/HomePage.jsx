@@ -59,6 +59,7 @@ const G = "#5CB8FF";     // Sky Blue primary
 const GM = "#1a8fd1";    // Sky Blue darker
 const GL = "#FFF8EE";    // Soft Cream background
 const NAVY = "#243B53";  // Dark Navy text/dark
+const GOLD = "#F9C846";         // Yellow/Gold (untuk highlight special)
 
 export default function HomePage() {
   const [scrollY, setScrollY] = useState(0);
