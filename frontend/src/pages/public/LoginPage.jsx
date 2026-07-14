@@ -6,8 +6,6 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { AuthAPI } from '../../services/api';
-import gedungPkbm from '../../assets/gedung-pkbm.jpg';
-import logoPkbm from '../../assets/logo-pkbm.png';
 import './LoginPage.css';
 
 // ═ COLOR PALETTE ═
@@ -73,26 +71,14 @@ function LoginPage() {
   return (
     <div className="login-page">
       
-      {/* ═ LEFT SIDE - BRANDING ═ */}
-      <div className="login-branding" style={{ backgroundImage: `url(${gedungPkbm})` }}>
-        <div className="login-branding-blur" style={{ backgroundImage: `url(${gedungPkbm})` }} />
+      {/* ═ LEFT SIDE - BRANDING GRADIENT ═ */}
+      <div className="login-branding">
         <div className="login-branding-container">
-          <img 
-            src={logoPkbm} 
-            alt="Logo PKBM" 
-            className="login-branding-img"
-            style={{ 
-              width: 100, 
-              height: 100, 
-              borderRadius: "50%",
-              border: "3px solid rgba(255,255,255,0.3)",
-              objectFit: "cover"
-            }} 
-          />
+          <div className="login-branding-icon">🎓</div>
           <div className="login-branding-info">
             <h2 className="login-branding-tagline">PKBM Bina Mandiri</h2>
             <p className="login-branding-subtext">
-              "Pendidikan Setara, Masa Depan Gemilang"
+              Pendidikan Setara, Masa Depan Gemilang
             </p>
           </div>
         </div>
@@ -147,7 +133,8 @@ function LoginPage() {
               <div style={{ position: "relative" }}>
                 <input
                   type={showPass ? "text" : "password"}
-                  className="form-input form-input.with-icon-right"
+                  className="form-input"
+                  style={{ paddingRight: "44px" }}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   disabled={loading}
